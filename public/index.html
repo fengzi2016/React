@@ -38,40 +38,40 @@
     -->
   </body>
   <script>
-    class Computer extends Component {
-  constructor(){
-    super();
-    this.state = { status: 'off'}
-    this.on = false;
-  }
-  handle(){
-    this.on = !this.on;
-    this.setState({
-      status : this.on === true ? 'on' : 'off'
-    });
-  }
+//     class Computer extends Component {
+//   constructor(){
+//     super();
+//     this.state = { status: 'off'}
+//     this.on = false;
+//   }
+//   handle(){
+//     this.on = !this.on;
+//     this.setState({
+//       status : this.on === true ? 'on' : 'off'
+//     });
+//   }
   
-  render () {
-    return (
-      <div>
-        <button onClick={this.handle.bind(this)}>开关</button>
-        <Screen status = {this.state.status}/>
-      </div>
-    )
-  }
-}
+//   render () {
+//     return (
+//       <div>
+//         <button onClick={this.handle.bind(this)}>开关</button>
+//         <Screen status = {this.state.status}/>
+//       </div>
+//     )
+//   }
+// }
 
-class Screen extends Component {
-  static defaultProps = {
-    showContent: '无内容'
-  }
+// class Screen extends Component {
+//   static defaultProps = {
+//     showContent: '无内容'
+//   }
   
-  render () {
-    return (
-      <div className='screen' >{this.props.status === 'on'?'显示器亮了':'显示器关了'}</div>
-    )
-  }
-}
+//   render () {
+//     return (
+//       <div className='screen' >{this.props.status === 'on'?'显示器亮了':'显示器关了'}</div>
+//     )
+//   }
+// }
 
   </script>
 </html>
