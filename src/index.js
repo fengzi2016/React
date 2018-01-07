@@ -60,64 +60,128 @@ import './index.css'
 //     { title: 'Lesson 4: title', description: 'Lesson 4: description' }
 
 //   ]
-class Input extends Component {
-  constructor(){
-    super();
-    this.state = {
-      number: ''
-    }
-  }
-  handleNumberChange(event){
-    this.setState({
-      number:event.target.value
-    })
+
+
+
+//----------------------------------------------------------------------------
+// class Input extends Component {
+//   constructor(){
+//     super();
+//     this.state = {
+//       number: ''
+//     }
+//   }
+//   handleNumberChange(event){
+//     this.setState({
+//       number:event.target.value
+//     })
   
-    this.props.onChange(event.target.value)
-  }
-  render () {
-    return (
-      <div>
-        <input type='number' value = {this.state.number} 
-          onChange = {this.handleNumberChange.bind(this)}/>
-      </div>
-    )
-  }
-}
+//     this.props.onChange(event.target.value)
+//   }
+//   render () {
+//     return (
+//       <div>
+//         <input type='number' value = {this.state.number} 
+//           onChange = {this.handleNumberChange.bind(this)}/>
+//       </div>
+//     )
+//   }
+// }
 
-class PercentageShower extends Component {
-  render () {
-    return (
-      <div>{this.props.number}</div>
-    )
-  }
-}
+// class PercentageShower extends Component {
+//   render () {
+//     return (
+//       <div>{this.props.number}</div>
+//     )
+//   }
+// }
 
-class PercentageApp extends Component {
-  constructor(){
-    super();
-    this.state = {
-      number: ''
+// class PercentageApp extends Component {
+//   constructor(){
+//     super();
+//     this.state = {
+//       number: ''
+//     }
+//   }
+//   handleChangeNumber(num){
+//     num= Number(num)*100;
+//     num=num.toFixed(2)+'%';
+//     this.setState({
+//       number:num
+//     })
+    
+//   }
+//   render () {
+//     return (
+//       <div>
+//       <Input onChange ={this.handleChangeNumber.bind(this)}/>
+//       <PercentageShower number = {this.state.number} />
+//       </div>
+//     )
+//   }
+// }
+
+//--------------
+// class Post extends Component {
+//   constructor(){
+//     super();
+
+//   }
+
+//   print(){
+//     console.log(this.p.clientHeight)
+//   }
+//   render () {
+//     return (<p onClick = {this.print.bind(this)}  ref ={(p)=> this.p = p} >{this.props.content}</p>)
+//   }
+// }
+// class Index extends Component{
+//   render(){
+//     return (
+//       <div>
+//         <Post content = 'sss' />
+//       </div>
+//       )
+//   }
+  
+// }
+// class BlackBorderContainer extends Component {
+//   render(){
+//     return(
+//       <div>
+//       {this.props.children.map((item)=>{
+//           return(
+//           <div className = 'blackBorder'>
+//             {item}
+//           </div>)
+//         })}
+//       </div>
+//       )
+//   }
+// }
+//---------------------------------
+// class Index extends Component{
+//   render(){
+//     return(
+//       <BlackBorderContainer>
+//         <div className='name'>My Name：Lucy</div>
+//         <p className='age'>
+//           My Age：<span>12</span>
+//         </p>
+//       </BlackBorderContainer>
+//     )
+//   }
+// }
+const getDefaultStyledPost = (defaultStyle) => {
+  return(  
+    class Post extends Component {
+    render(){
+      return(
+        <p style = { Object.assign(defaultStyle, this.props.style)}></p>
+        )
     }
   }
-  handleChangeNumber(num){
-    num= Number(num)*100;
-    num=num.toFixed(2)+'%';
-    this.setState({
-      number:num
-    })
-    
-  }
-  render () {
-    return (
-      <div>
-      <Input onChange ={this.handleChangeNumber.bind(this)}/>
-      <PercentageShower number = {this.state.number} />
-      </div>
-    )
-  }
+)
+
 }
 
-ReactDOM.render(
-  <PercentageApp />,
-  document.getElementById('root')
-)
