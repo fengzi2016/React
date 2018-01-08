@@ -64,6 +64,7 @@ import './index.css'
 
 
 //----------------------------------------------------------------------------
+// 数据流在父子中传递
 // class Input extends Component {
 //   constructor(){
 //     super();
@@ -122,6 +123,7 @@ import './index.css'
 // }
 
 //--------------
+//ref，获取htmlDOM
 // class Post extends Component {
 //   constructor(){
 //     super();
@@ -172,16 +174,53 @@ import './index.css'
 //     )
 //   }
 // }
-const getDefaultStyledPost = (defaultStyle) => {
-  return(  
-    class Post extends Component {
+//--------------
+// const getDefaultStyledPost = (defaultStyle) => {
+//   return(  
+//     class Post extends Component {
+//     render(){
+//       return(
+//         <p style = { Object.assign(defaultStyle, this.props.style)}></p>
+//         )
+//     }
+//   }
+// )
+
+// }
+//高阶组件，逻辑抽离
+// getData(url) 已经可以直接使用
+// 本站的环境都可以使用 async/await
+
+const loadAndRefresh = (url)=>(WrappedComponent)=>{
+  class NewComponent extends Component{
+    constructor(){
+      super();
+      this.state = {
+        content:null
+      }
+    }
+    componentWillMount(){
+       this.setState({content:"数据加载中..."})
+      // const content = await getData(url)
+      getData(url).then((content)=>{
+        this.setState({content})
+      });
+    }
+    handleRefresh(){
+      this.componentWillMount();
+    }
     render(){
+
       return(
-        <p style = { Object.assign(defaultStyle, this.props.style)}></p>
+        <WrappedComponent  content ={this.state.content}  refresh={ this.handleRefresh.bind(this)} {...this.props}/>
         )
     }
   }
-)
-
+  return NewComponent
+ 
 }
 
+ReactDOM.render(
+  <Header />,
+  document.getElementById('root')
+)
