@@ -191,33 +191,57 @@ import './index.css'
 // getData(url) 已经可以直接使用
 // 本站的环境都可以使用 async/await
 
-const loadAndRefresh = (url)=>(WrappedComponent)=>{
+// const loadAndRefresh = (url)=>(WrappedComponent)=>{
+//   class NewComponent extends Component{
+//     constructor(){
+//       super();
+//       this.state = {
+//         content:null
+//       }
+//     }
+//     componentWillMount(){
+//        this.setState({content:"数据加载中..."})
+//       // const content = await getData(url)
+//       getData(url).then((content)=>{
+//         this.setState({content})
+//       });
+//     }
+//     handleRefresh(){
+//       this.componentWillMount();
+//     }
+//     render(){
+
+//       return(
+//         <WrappedComponent  content ={this.state.content}  refresh={ this.handleRefresh.bind(this)} {...this.props}/>
+//         )
+//     }
+//   }
+//   return NewComponent
+ 
+// }
+//----------------------------------------
+//高阶组件+content
+const makeProvider = (data)=>(WrappedComponent)=>{
   class NewComponent extends Component{
+    static childContextTypes ={
+      data : PropTypes.object
+    }
     constructor(){
       super();
-      this.state = {
-        content:null
+      this.state ={
+        data : data
       }
     }
-    componentWillMount(){
-       this.setState({content:"数据加载中..."})
-      // const content = await getData(url)
-      getData(url).then((content)=>{
-        this.setState({content})
-      });
-    }
-    handleRefresh(){
-      this.componentWillMount();
+    getChildContext(){
+      return {data: this.state.data}
     }
     render(){
-
       return(
-        <WrappedComponent  content ={this.state.content}  refresh={ this.handleRefresh.bind(this)} {...this.props}/>
+        <WrappedComponent />
         )
     }
   }
   return NewComponent
- 
 }
 
 ReactDOM.render(
