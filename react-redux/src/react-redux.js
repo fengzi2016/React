@@ -33,6 +33,12 @@ export const connect = (mapStateToProps) => (WrappedComponent) =>{
     }
     return Connect
 }
+
+
+
+
+
+
 // const mapStateToProps = (state) => {
 //     return {
 //       themeColor: state.themeColor
