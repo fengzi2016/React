@@ -244,25 +244,25 @@ import './index.css'
 //   return NewComponent
 // }
 //UserReducer修改纯函数
-const usersReducer = (state,action)=>{
-  switch(action.type){
-    case 'ADD_USER':
-        return state.push(action.user)
-     case 'DELETE_USER':
-       return state.splice(action.index,1)
-     case 'UPDATE_USER':
-       return 
-         state.map((item,i)=>{
-           if(i===action.index){
-             return {
-               ...item,
-               ...action.user
-             }
-           }
+// const usersReducer = (state,action)=>{
+//   switch(action.type){
+//     case 'ADD_USER':
+//         return state.push(action.user)
+//      case 'DELETE_USER':
+//        return state.splice(action.index,1)
+//      case 'UPDATE_USER':
+//        return 
+//          state.map((item,i)=>{
+//            if(i===action.index){
+//              return {
+//                ...item,
+//                ...action.user
+//              }
+//            }
           
-         })
-       }
-  }
+//          })
+//        }
+//   }
   
 
 ReactDOM.render(
